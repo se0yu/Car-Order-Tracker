@@ -59,6 +59,7 @@ public class ModelServiceImpl implements ModelService {
 
 	//모델 수정
 	@Override
+	@CacheEvict(value = "models", allEntries = true)
 	@Transactional("dataTransactionManager")
 	@PreAuthorize("hasRole('MASTER')")
 	public ModelResponse updateModel(Long modelId, ModelUpdateRequest request) {
@@ -71,6 +72,7 @@ public class ModelServiceImpl implements ModelService {
 
 	//모델 삭제 조회
 	@Override
+	@CacheEvict(value = "models", allEntries = true)
 	@Transactional("dataTransactionManager")
 	@PreAuthorize("hasRole('MASTER')")
 	public void deleteModel(Long modelId) {

@@ -52,6 +52,7 @@ public class OptionServiceImpl implements OptionService {
 
 	@Override
 	@Transactional(value = "dataTransactionManager")
+	@CacheEvict(value = "options", allEntries = true)
 	@PreAuthorize("hasRole('MASTER')")
 	public OptionResponse updateOption(Long optionId, OptionUpdateRequest request) {
 		Option option = findActiveOption(optionId);
@@ -62,6 +63,7 @@ public class OptionServiceImpl implements OptionService {
 
 	@Override
 	@Transactional(value = "dataTransactionManager")
+	@CacheEvict(value = "options", allEntries = true)
 	@PreAuthorize("hasRole('MASTER')")
 	public void deleteOption(Long optionId) {
 		Option option = findActiveOption(optionId);
